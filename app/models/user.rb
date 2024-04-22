@@ -18,6 +18,7 @@ class User < ApplicationRecord
          validates :family_name_key, format: { with: VALID_NAME_KEY_REGEX }
          validates :first_name_key, format: { with: VALID_NAME_KEY_REGEX }
          validates :birthday
+         end
 
          has_many :items 
          has_many :order
