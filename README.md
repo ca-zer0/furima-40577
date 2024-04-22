@@ -1,24 +1,65 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# テーブル設計
 
-Things you may want to cover:
+## users テーブル
 
-* Ruby version
+| Column             | Type   | Options     |
+| -----------------  | ------ | --------    |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false |
+| nickname           | string | null: false |
+| family_name        | string | null: false |
+| first_name         | string | null: false |
+| family_name_key    | string | null: false |
+| first_name_key     | string | null: false |
+| birthday           | date   | null: false |
 
-* System dependencies
+has_many :items 
+has_many :order
 
-* Configuration
 
-* Database creation
+## items テーブル
 
-* Database initialization
+| Column         | Type       | Options                        |
+| ------         | -------    | -----------                    |
+| name           | string     | null: false                    |
+| describe       | text       | null: false                    |
+| price          | integer    | null: false                    |
+| user           | references | null: false, foreign_key :true |
+| category_id    | integer    | null: false, numericality: { other_than: 1 } |
+| condition_id   | integer    | null: false, numericality: { other_than: 1 } |
+| deli_charge_id | integer    | null: false, numericality: { other_than: 1 } |
+| prefecture_id  | integer    | null: false, numericality: { other_than: 1 } |
+| deli_time_id   | integer    | null: false, numericality: { other_than: 1 } |
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+belongs_to :user 
+has_one :order
 
-* Deployment instructions
+## orders テーブル
 
-* ...
+| user      | references  | null: false, foreign_key :true |
+| item      | references  | null: false, foreign_key :true |
+
+belongs_to :user
+belongs_to :item
+has_one :address
+
+## addresses テーブル
+
+| Column          | Type        | Options     |
+| ------------    | ------      | ------      |
+| post_code       | string      | null: false | 
+| prefecture_id   | integer      | null: false |
+| city            | string      | null: false |
+| street          | string      | null: false |
+| building        | string      |             |
+| phone_number    | string      | null: false |
+| order           | references  | null: false, foreign_key :true |
+
+
+belongs_to :order
+
+
+
