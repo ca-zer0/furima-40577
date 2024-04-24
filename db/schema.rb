@@ -58,11 +58,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_23_140421) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "nickname", null: false
-    t.string "family_name"
-    t.string "first_name"
-    t.string "family_name_key"
-    t.string "first_name_key"
-    t.date "birthday"
+    t.string "family_name", null: false
+    t.string "first_name", null: false
+    t.string "family_name_key", null: false
+    t.string "first_name_key", null: false
+    t.date "birthday", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
