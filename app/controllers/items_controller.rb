@@ -17,7 +17,8 @@ class ItemsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
+  
+private
   def item_params
     params.require(:item).permit(
       :name,:describe, :price,:category_id, :condition_id, 
