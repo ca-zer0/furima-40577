@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
     before do
     @item = FactoryBot.build(:item)
-end
+    end
 
  describe '商品出品機能' do
   context '登録できる場合' do
@@ -104,7 +104,7 @@ end
      @item.price = '123.45'
      @item.valid?
      expect(@item.errors.full_messages).to include('Price must be an integer')
-  end
+   end
 
 
   it "priceが全角だと登録できない" do
