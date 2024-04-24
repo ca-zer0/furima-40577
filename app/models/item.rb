@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :Category
 
   with_options presence: true do
     validates :name
@@ -17,5 +16,11 @@ class Item < ApplicationRecord
 
   belongs_to :user 
   has_one_attached :image
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :deli_charge
+  belongs_to :prefecture
+  belongs_to :deli_time
+
   # has_one :order
 end
