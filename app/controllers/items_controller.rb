@@ -3,6 +3,11 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order("created_at DESC")
+
+    if params[:category_id].present?
+      @category = Category.find(params[:category_id])
+      @items = @category.items
+    end
   end
 
   def new
@@ -17,6 +22,10 @@ class ItemsController < ApplicationController
       puts @item.errors.full_messages
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @item = Item.find(params[:id])
   end
 
 private
