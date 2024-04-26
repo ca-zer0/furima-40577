@@ -3,6 +3,12 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order("created_at DESC")
+    @categories = Category.all.order("created_at DESC")
+
+    if params[:category_id].present?
+      @category = Category.find(params[:category_id])
+      @items = @category.items
+    end
   end
 
   def new
