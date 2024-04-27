@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
@@ -11,7 +12,7 @@ class OrdersController < ApplicationController
   @order_form = OrderForm.new(order_params)
   if @order_form.valid?
     pay_item(order_params)
-    if @order_form.save
+    if @order_form.save(order_params, current_user.id)
       redirect_to root_path
     else
       render :index, status: :unprocessable_entity
