@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :set_item
+  before_action :sold_item
 
   def index
     if @item.user_id == current_user.id
@@ -41,4 +42,9 @@ class OrdersController < ApplicationController
       @item = Item.find(params[:item_id])
     end
     
+    def sold_item
+      if @item.order
+        redirect_to root_path
+      end
+    end
 end
