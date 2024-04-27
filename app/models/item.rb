@@ -21,6 +21,5 @@ class Item < ApplicationRecord
   belongs_to :deli_charge
   belongs_to :prefecture
   belongs_to :deli_time
-
-  # has_one :order
+  has_one :order
 end
