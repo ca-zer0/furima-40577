@@ -4,10 +4,10 @@ class OrdersController < ApplicationController
   before_action :sold_item
 
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     if @item.user_id == current_user.id
       redirect_to root_path
     else
-      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       @order_form = OrderForm.new
     end
   end
