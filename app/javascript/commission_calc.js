@@ -1,14 +1,17 @@
-window.addEventListener('turbo:load', () => {
-  const price = document.getElementById("item-price");
+const price = () => {
+  const priceInput = document.getElementById("item-price");
+  priceInput.addEventListener("input", () => {
+    const inputValue = priceInput.value;
+    console.log(inputValue); 
+    const addTaxPrice = Math.floor(inputValue * 0.1);
+    const addTaxPriceElement = document.getElementById("add-tax-price");
+    addTaxPriceElement.textContent = addTaxPrice;
 
-  if(price){
-    price.addEventListener('input', function(){
-      const inputValue = price.value;
-      const addTaxPrice = document.getElementById("add-tax-price");
-      addTaxPrice.innerHTML = Math.floor(inputValue * 0.1);
+    const Profit = Math.floor(inputValue * 0.9);
+    const ProfitElement = document.getElementById("profit");
+    ProfitElement.textContent = Profit;
+  });
+};
 
-      const profit = document.getElementById("profit");
-      profit.innerHTML = Math.floor(inputValue - Number(addTaxPrice.innerHTML));
-    });
-  }
-});
+window.addEventListener("turbo:render", price);
+window.addEventListener("turbo:load", price);
